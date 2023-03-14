@@ -31,7 +31,7 @@ $ npm run start:prod
 The application runs on `localhost:3000`
 
 There are 2 GET endpoints:
--`/` : Home url
+- `/` : Home url
 - `/users?limit=10&page=2` : All users endpoint with optional query parameters
 
 There is also a websocket endpoint which is `localhost:3000`
