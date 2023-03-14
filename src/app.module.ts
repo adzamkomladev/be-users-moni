@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleModule } from '@nestjs/schedule';
+
+import { User, UserSchema } from './schemas/user.schema';
 
 import { AppService } from './app.service';
 
 import { AppController } from './app.controller';
-import { User, UserSchema } from './schemas/user.schema';
 
 @Module({
   imports: [
@@ -15,6 +17,7 @@ import { User, UserSchema } from './schemas/user.schema';
         schema: UserSchema,
       },
     ]),
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
