@@ -12,7 +12,9 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/beUsersMoni'),
+    MongooseModule.forRoot(
+        'mongodb://localhost/beUsersMoni'
+    ),
     MongooseModule.forFeature([
       {
         name: User.name,
