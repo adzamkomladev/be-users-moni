@@ -4,6 +4,8 @@ import { ScheduleModule } from '@nestjs/schedule';
 
 import { User, UserSchema } from './schemas/user.schema';
 
+import { AppGateway } from './app.gateway';
+
 import { AppService } from './app.service';
 
 import { AppController } from './app.controller';
@@ -20,6 +22,6 @@ import { AppController } from './app.controller';
     ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppGateway, AppService],
 })
 export class AppModule {}

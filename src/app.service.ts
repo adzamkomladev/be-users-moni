@@ -6,12 +6,14 @@ import { Model } from 'mongoose';
 import { faker } from '@faker-js/faker';
 
 import { User, UserDocument } from './schemas/user.schema';
+import { AppGateway } from './app.gateway';
 
 @Injectable()
 export class AppService {
   private readonly logger: Logger;
 
   constructor(
+    private readonly appGateway: AppGateway,
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   ) {
     this.logger = new Logger(AppService.name);
@@ -65,7 +67,12 @@ export class AppService {
       return;
     }
 
-    const createdUsers = await Promise.all(users);
+    await Promise.all(users);
+
+    this.appGateway.server.emit('users-created', {
+      message: `TOTAL USERS CREATED = ${totalUsers}`,
+      totalUsersCreated: totalUsers,
+    });
 
     this.logger.log(
       `TOTAL USERS CREATED = ${totalUsers}. This cron runs every 100sec`,
